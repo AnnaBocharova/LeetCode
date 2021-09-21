@@ -1,0 +1,62 @@
+map<int, string> mp{
+            {1, "I"},
+            {5, "V"},
+            {10, "X"},
+            {50, "L"},
+            {100, "C"},
+            {500, "D"},
+            {1000, "M"},
+            {4, "IV"},
+            {9, "IX"},
+            {40, "XL"},
+            {90, "XC"},
+            {400, "CD"},
+            {900, "CM"}
+        };
+		
+class Solution {
+public:
+    string formString(int n)
+{
+	if(n <= 0)
+		return "";
+
+	if(mp.count(n))
+		return mp[n];
+
+	if(n < 5)
+		return "I" + formString(n-1);
+
+	if(n < 10)
+		return "V" + formString(n-5);
+
+	if(n < 50)
+		return "X" + formString(n-10);
+
+	if(n < 100)
+		return "L" + formString(n-50);
+
+	if(n < 500)
+		return "C" + formString(n-100);
+
+	if(n < 1000)
+		return "D" + formString(n-500);
+
+	return "M" + formString(n-1000);
+}
+    
+ string intToRoman(int num) {
+  int n = 0, p = 0;
+	string res = "";
+
+	while(num)
+	{
+		n = (num % 10) * pow(10, p);
+		res = formString(n) + res;
+		num /= 10;
+		++p;
+	}
+	return res;
+}
+    
+};
