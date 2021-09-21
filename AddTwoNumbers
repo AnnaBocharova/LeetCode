@@ -1,0 +1,23 @@
+class Solution {
+public:
+    
+        ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* head=new ListNode(0);
+            ListNode* new_node=head;
+            int temp=0; //
+           while(l1 || l2){
+               int x=(l1!=nullptr) ? l1->val : 0;
+               int y=(l2!=nullptr) ? l2->val : 0;
+               int result=temp+x+y;
+               temp=result/10;
+               new_node->next=new ListNode(result%10);
+               new_node=new_node->next;
+               if(l1) l1=l1->next;
+               if(l2) l2=l2->next;
+           } 
+            if(temp>0){
+                new_node->next=new ListNode(temp);
+}
+            return head->next;
+    }
+};
